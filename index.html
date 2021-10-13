@@ -111,19 +111,24 @@
             <p id="p2"> Paragraph Number two </p>
             <p id="p3"> Paragraph Number three </p>
             <p>Please write JavaScript code to change the content of each paragraph.​
-            <p>
+            </p>
+            <script>
 
 
+
+            </script>
         </div>
+
 
         <div class="practice">
             <h1> Get input from a form </h1>
             <p> Please enter your numbers </p>
             <script>
+
                 function calculate() {
 
-
                 }
+
             </script>
             <p> <input type="text" name="num1" /> + <input type="text" name="num2">
                 <input type="button" value="=" onclick="calculate();">
@@ -131,6 +136,7 @@
             </p>
 
         </div>
+
 
         <div class="practice">
             <h1>JavaScript Events - blur -addEventListener </h1>
@@ -154,13 +160,30 @@
 
         </div>
 
+
         <div class="practice">
             <h1> Practice - Calculate Square</h1>
             Calculating Square:
             <input type="text" id="num" placeholder="Type in a number"> <sup> 2 </sup> =
             <label id="result"> ? </label>
 
+            <script>
+
+                function square(){
+                    var e1 = document.getElementById("num");
+                    var num = parseInt(e1.value)
+                    var res = 0;
+
+                    res = input*input;
+
+                    document.getElementById("result").textContent = res.toString();
+                }
+
+                document.getElementById("num").addEventListener("blur", square, false);
+
+            </script>
         </div>
+
 
         <div class="practice">
             <h1> Difference between textcontent and innerHTML</h1>
@@ -177,6 +200,7 @@
 
 
         </div>
+
 
         <div class="practice">
             <h1>Decision statement - If </h1>
@@ -195,23 +219,81 @@
             <p id="price">
 
             </p>
-
             <script type="text/javascript">
 
+                // Event Handler : change -> update price
+                function getPrice(){
+                    // input
+                    var year = document.getElementById("year").value;
+                    var cond = document.getElementById("condition").value;
+                    var price = 0;
+                    
+                    // process
+                    if (year == "2003" && cond == "Fair"){
+                        price = 2000;
+                    }
+                    else if (year == "2003" && cond == "Good"){
+                        price = 3000;
+                    }
+                    else if (year == "2004" && cond == "Fair"){
+                        price = 4000;
+                    }
+                    else if (year == "2004" && cond == "Good"){
+                        price = 4500;
+                    }
 
+                    // output
+                    document.getElementById("price").textContent = price.toString();
+                }
+
+                // Register Event
+                document.getElementById("year").addEventListener("change", getPrice, false);
+                document.getElementById("condition").addEventListener("change", getPrice, false);
 
             </script>
 
         </div>
+
 
         <div class="practice">
             <h1> Decision Statement - Switch</h1>
             <p> Choose your favorite theme(warm, cool, hot)
                 <input type="text" id="theme">
             </p>
+            <script>
 
+                // Event Handler blur -> changeColor
+                function changeColor(){
+                    var theme = document.getElementById("theme").value;
+                    var bcolor = "white";
+
+                    //process input
+                    switch (theme) {
+                        case "warm":
+                            bcolor = "green";
+                            break;
+
+                        case "cool":
+                            bcolor = "blue";
+                            break;
+
+                        case "hot":
+                            bcolor = "red";
+                            break;
+
+                        default:
+                            bcolor = "white";
+                            break;
+                    }
+
+                    //output
+                    document.body.setAttribute("style", "background-color:"+bcolor);
+                }
+
+                document.getElementById("theme").addEventListener("blur", changeColor, false);
+
+            </script>
         </div>
-
 
 
         <div class="practice">
@@ -233,15 +315,26 @@
 
             </p>
             <p>
-                <input type="button" value="Check Premium">
+                <input type="button" id="pbutton" value="Check Premium">
             </p>
             <p id="result">
 
             </p>
+            <script>
 
+                document.getElementById('pbutton').addEventListener('click', getprem);
+
+                function getprem(){
+                    // get rad button val
+                    var e1 = document.querySelector("input[name='coverage']:checked");
+                    var coverage = parseInt(e1.value);
+                    console.log(coverage);
+                    //select box cov
+
+                }
+
+            </script>
         </div>
-
-
 
 
         <div class="practice">
@@ -283,12 +376,14 @@
             </script>
         </div>
 
+
         <div class="practice">
             <h1> A simple JavaScript Quiz</h1>
             <p> A simple JavaScript Quiz </p>
             <p>Target: Generate a simple substract and add problems using JavaScript and then check the answers</p>
             <a href="quiz1.html">Do your practice in quiz1.html</a>
         </div>
+
 
         <div class="practice">
             <h1>Change Attribute -- Rolling a dice </h1>
@@ -372,8 +467,6 @@
             </div>
 
         </div>
-
-
 
 
         <div class="practice">
