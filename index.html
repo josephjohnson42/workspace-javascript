@@ -114,7 +114,9 @@
             </p>
             <script>
 
-
+                document.getElementById("p1").textContent = "I";
+                document.getElementById("p2").textContent = "have";
+                document.getElementById("p3").textContent = "changed";
 
             </script>
         </div>
@@ -164,22 +166,21 @@
         <div class="practice">
             <h1> Practice - Calculate Square</h1>
             Calculating Square:
-            <input type="text" id="num" placeholder="Type in a number"> <sup> 2 </sup> =
-            <label id="result"> ? </label>
+            <input type="text" id="bigNum" placeholder="Type in a number"> <sup> 2 </sup> =
+            <label id="r"> ? </label>
 
             <script>
 
                 function square(){
-                    var e1 = document.getElementById("num");
-                    var num = parseInt(e1.value)
-                    var res = 0;
+                    var sE = document.getElementById("bigNum");
+                    var num = parseFloat(sE.value);
 
-                    res = input*input;
+                    var res = num*num;
 
-                    document.getElementById("result").textContent = res.toString();
+                    document.getElementById("r").textContent = res.toString();
                 }
 
-                document.getElementById("num").addEventListener("blur", square, false);
+                document.getElementById("bigNum").addEventListener("blur", square, false);
 
             </script>
         </div>
@@ -317,7 +318,7 @@
             <p>
                 <input type="button" id="pbutton" value="Check Premium">
             </p>
-            <p id="result">
+            <p id="myprem">
 
             </p>
             <script>
@@ -329,8 +330,23 @@
                     var e1 = document.querySelector("input[name='coverage']:checked");
                     var coverage = parseInt(e1.value);
                     console.log(coverage);
+                    
                     //select box cov
+                    var e2 = document.getElementById('agegroup').selectedIndex;
+                    console.log("index: "+e2);
 
+                    var ageFactor = 0;
+                    switch(e2){
+                        case 0: ageFactor=0.08; break;
+                        case 1: ageFactor=0.09; break;
+                        case 2: ageFactor=0.1; break;
+                        case 3: ageFactor=0.11; break;
+                    }
+
+                    //output
+                    var res = (coverage/1000)*ageFactor;
+                    console.log("prem: "+res);
+                    document.getElementById('myprem').textContent = "$"+res.toString();
                 }
 
             </script>
@@ -342,9 +358,28 @@
             <p> Display the square of numer 1... N </p>
             <p> N = <input type="number" min="1" max="10" id="inputnumber1"> </p>
             <p>
-                <input type="button" value="Click for Square">
+                <input type="button" id="qsSqur" value="Click for Square">
             </p>
+            <p id=squrRes></p>
+            <script>
 
+                //event
+                document.querySelector('#qsSqur').addEventListener('click', dosquare);
+
+                //event handler
+                function dosquare(){
+                    var N = parseInt(document.getElementById("inputnumber1").value);
+                    var res = "";
+
+                    for (var i=1; i <=N; i++){
+                        var isquare = i*i;
+                        res += "<h2> "+isquare+"</h2>";
+                    }
+
+                    document.getElementById("squrRes").innerHTML=res;
+                }
+
+            </script>
         </div>
 
 
@@ -359,9 +394,18 @@
             <!-- output section -->
             <div id="output">
 
-
             </div>
+            <script>
 
+                function multTable(){
+                    res = "<table>";
+                    var N = parseInt(document.getElementById("inputnumber1").value);
+                        
+
+                    res += "</table>";
+                }
+
+            </script>
         </div>
 
 
