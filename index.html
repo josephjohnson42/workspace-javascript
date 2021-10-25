@@ -388,21 +388,37 @@
             <!--  Input number box -->
             <p> N = <input type="number" min="1" max="10" id="inputnumber2"> </p>
             <p>
-                <input type="button" value="Click for multiplication table">
+                <input type="button" id="multTButton" value="Click for multiplication table">
             </p>
 
             <!-- output section -->
-            <div id="output">
+            <div id="multTableOut">
 
             </div>
             <script>
 
+                //event
+                document.querySelector('#multTButton').addEventListener('click', multTable);
+
+                //event handler
                 function multTable(){
                     res = "<table>";
-                    var N = parseInt(document.getElementById("inputnumber1").value);
-                        
+                    var N = parseInt(document.getElementById("inputnumber2").value);
+                    var out = 0;
+                    
+                    for (var i = 1; i <= N; i++){
+                        res += "<tr>";
+
+                        for (var j =1; j <= N; j++){
+                            out = i*j;
+                            res += "<td>"+out+"</td>";
+                        }
+
+                        res += "</tr>";
+                    }
 
                     res += "</table>";
+                    document.getElementById('multTableOut').innerHTML = res;
                 }
 
             </script>
@@ -432,7 +448,7 @@
         <div class="practice">
             <h1>Change Attribute -- Rolling a dice </h1>
             <p> <input type="button" id="roll" value="roll" /> </p>
-            <p> <img src="img/die1.png"> </p>
+            <p> <img id="dieImg" src="img/die1.png"> </p>
             <table>
                 <tr>
                     <th>Result</th>
@@ -454,6 +470,28 @@
                 </tr>
             </table>
 
+            <script>
+
+                //event
+                document.querySelector('#roll').addEventListener('click', rollDice);
+
+                //event selector
+                var stats = [0,0,0,0,0,0];
+
+                function rollDice(){
+                    console.log('working');
+                    var e1 = document.getElementById('dieImg');
+                    
+                    var rand = Math.floor(Math.random()*6+1);
+                    console.log(rand);
+
+                    e1.setAttribute("src","img/die"+rand+".png");
+
+                    stats[rand-1]++;
+                    document.getElementById('r'+rand).textContent = stats[rand-1].toString();
+                }
+
+            </script>
         </div>
 
 
@@ -474,7 +512,20 @@
             <div class="img-container-hide">
                 <img src="img/usca5.jpg" alt="usca">
             </div>
+            <script>
 
+                var index = 0;      //img shown
+                var imgList = document.querySelectorAll('.img-container-hide');
+
+                setInterval(changeImg, 3000);   //call func every 3 sec
+                function changeImg(){
+                    imgList[index].setAttribute('class', '.img-container-hide');
+                    index++;
+                    index = index%5;
+                    imgList[index].setAttribute('class', 'img-container');
+                }
+
+            </script>
         </div>
 
 
