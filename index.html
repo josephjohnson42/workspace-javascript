@@ -12,9 +12,24 @@
     <script>
 
         $(document).ready(function (){
-            $('body').hide().fadeIn(3000);
-            $('h1').hide().fadeIn(5000);
+            $('body').hide().fadeIn(3000, function(){alert("done!");});     //alerts on completion
             $('img').fadeOut(10000);
+
+            $('h1').mouseover(function (){
+                $(this).slideUp();
+            });
+            $('h1').mouseleave(function (){
+                $(this).slideDown();
+                $(this).text("Boo >:3");
+            });
+            $('h1').dblclick(function(){
+                $(this).text("I hide");
+                $(this).parent().children('p').slideToggle();
+            });
+
+            //var content = $('h1').text();     to get text
+
+            
         });
 
     </script>
